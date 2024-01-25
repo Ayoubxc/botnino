@@ -1,1 +1,42 @@
-const _0x7a59f=_0x2d84;(function(_0xd2e6d1,_0x248237){const _0x45a098=_0x2d84,_0x44e9a6=_0xd2e6d1();while(!![]){try{const _0x4be5b0=parseInt(_0x45a098(0x101))/0x1+parseInt(_0x45a098(0xee))/0x2*(-parseInt(_0x45a098(0xf6))/0x3)+-parseInt(_0x45a098(0xfe))/0x4*(-parseInt(_0x45a098(0x108))/0x5)+parseInt(_0x45a098(0xed))/0x6*(parseInt(_0x45a098(0xfa))/0x7)+parseInt(_0x45a098(0x107))/0x8+parseInt(_0x45a098(0xfc))/0x9*(parseInt(_0x45a098(0x109))/0xa)+-parseInt(_0x45a098(0xec))/0xb;if(_0x4be5b0===_0x248237)break;else _0x44e9a6['push'](_0x44e9a6['shift']());}catch(_0x448e82){_0x44e9a6['push'](_0x44e9a6['shift']());}}}(_0xf46a,0x23c8d));const {spawn}=require(_0x7a59f(0x102)),{readFileSync}=require('fs-extra'),http=require(_0x7a59f(0xfd)),axios=require(_0x7a59f(0xfb)),semver=require('semver'),logger=require('./utils/log'),dashboard=http['createServer'](function(_0x4a257d,_0xf20805){const _0x2a2348=_0x7a59f;_0xf20805[_0x2a2348(0x10b)](0xc8,'OK',{'Content-Type':_0x2a2348(0xeb)}),_0xf20805[_0x2a2348(0xef)]('🥷🏻 NINO 🐦‍⬛ BOT 🐦‍⬛ AYOUB 🥷🏻'),_0xf20805['end']();});dashboard[_0x7a59f(0xf5)](process[_0x7a59f(0x100)][_0x7a59f(0xf9)]||0x0),logger('تـم تـشـغـيـل \x20الـبـوت\x20✅',_0x7a59f(0x10a));function startBot(_0x2ed961){const _0x4b406b=_0x7a59f;_0x2ed961?logger(_0x2ed961,'[\x20تـم تطويره بواسطة أيوب\x20]'):'';const _0xe3e7c0=spawn(_0x4b406b(0xf2),[_0x4b406b(0xf3),_0x4b406b(0x103),'mirai.js'],{'cwd':__dirname,'stdio':_0x4b406b(0x106),'shell':!![]});_0xe3e7c0['on'](_0x4b406b(0xff),_0x4432ae=>{const _0x4060fa=_0x4b406b;if(_0x4432ae!=0x0||global['countRestart']&&global['countRestart']<0x5){startBot(_0x4060fa(0x105)),global[_0x4060fa(0xf8)]+=0x1;return;}else return;}),_0xe3e7c0['on']('خطأ في بوت نينو',function(_0x4e4d41){const _0x1cf63c=_0x4b406b;logger(_0x1cf63c(0xf4)+JSON[_0x1cf63c(0xf1)](_0x4e4d41),_0x1cf63c(0x10a));});};function _0x2d84(_0x37dd91,_0x4e6db6){const _0xf46a6a=_0xf46a();return _0x2d84=function(_0x2d8466,_0x11c8be){_0x2d8466=_0x2d8466-0xeb;let _0x2c6c73=_0xf46a6a[_0x2d8466];return _0x2c6c73;},_0x2d84(_0x37dd91,_0x4e6db6);}function _0xf46a(){const _0x3dc2bf=['child_process','--async-stack-traces','https://raw.githubusercontent.com/shaonahmed47/Shaon-bypass-/main/package.json','Ayoub shadow is black...','inherit','682656gopiSQ','22920oKuSQt','2924050ukWdHj','[\x20         ┏━━╮┏┓┏┓┏━━╮┏┓ ╭━┓┏━╮                      ┃┏╮┃┃┃┃┃┃┏╮┃┃┃ ┃╭┛┗╮┃                      ┃┃┃╰┛┃┃┃┃┃┃╰┛┃ ┃╰┓┏╯┃                      ┗┛╰━━┛┗┛┗┛╰━━┛ ╰━┛┗━╯        \x20]','writeHead','text/plain','5976201nMkyqK','121530lkJLkC','116970jdgGvJ','write','then','stringify','node','--trace-warnings','An\x20Ǻ Ꭹ Ꭷ Ꮼ Ᏸ Boss nino bot error\x20occurred:\x20','listen','3LsBeSN','get','countRestart','port','49GDSBhu','axios','9UDJmnh','http','164cPzvPw','close','env','40883srzsyr'];_0xf46a=function(){return _0x3dc2bf;};return _0xf46a();}axios[_0x7a59f(0xf7)](_0x7a59f(0x104))[_0x7a59f(0xf0)](_0x2724e1=>{}),startBot();
+const {
+  spawn
+} = require("child_process");
+const http = require("http");
+const axios = require("axios");
+const logger = require('./utils/log');
+const dashboard = http.createServer(function (_0x4a257d, _0xf20805) {
+  _0xf20805.writeHead(0xc8, 'OK', {
+    'Content-Type': "text/plain"
+  });
+  _0xf20805.write('🥷🏻 NINO 🐦‍⬛ BOT 🐦‍⬛ AYOUB 🥷🏻');
+  _0xf20805.end();
+});
+dashboard.listen(process.env.PORT || 8080);
+logger("تـم تـشـغـيـل  الـبـوت ✅", "[          ┏━━╮┏┓┏┓┏━━╮┏┓ ╭━┓┏━╮                      ┃┏╮┃┃┃┃┃┃┏╮┃┃┃ ┃╭┛┗╮┃                      ┃┃┃╰┛┃┃┃┃┃┃╰┛┃ ┃╰┓┏╯┃                      ┗┛╰━━┛┗┛┗┛╰━━┛ ╰━┛┗━╯         ]");
+function startBot(_0x2ed961) {
+  if (_0x2ed961) {
+    logger(_0x2ed961, "[ تـم تطويره بواسطة أيوب ]");
+  } else {
+    '';
+  }
+  const _0xe3e7c0 = spawn("node", ["--trace-warnings", "--async-stack-traces", 'mirai.js'], {
+    'cwd': __dirname,
+    'stdio': "inherit",
+    'shell': true
+  });
+  _0xe3e7c0.on("close", _0x4432ae => {
+    if (_0x4432ae != 0x0 || global.countRestart && global.countRestart < 0x5) {
+      startBot("Ayoub shadow is black...");
+      global.countRestart += 0x1;
+      return;
+    } else {
+      return;
+    }
+  });
+  _0xe3e7c0.on('خطأ في بوت نينو', function (_0x4e4d41) {
+    logger("An Ǻ Ꭹ Ꭷ Ꮼ Ᏸ Boss nino bot error occurred: " + JSON.stringify(_0x4e4d41), "[          ┏━━╮┏┓┏┓┏━━╮┏┓ ╭━┓┏━╮                      ┃┏╮┃┃┃┃┃┃┏╮┃┃┃ ┃╭┛┗╮┃                      ┃┃┃╰┛┃┃┃┃┃┃╰┛┃ ┃╰┓┏╯┃                      ┗┛╰━━┛┗┛┗┛╰━━┛ ╰━┛┗━╯         ]");
+  });
+}
+;
+axios.get("https://raw.githubusercontent.com/shaonahmed47/Shaon-bypass-/main/package.json").then(_0x2724e1 => {});
+startBot();
