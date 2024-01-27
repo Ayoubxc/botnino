@@ -137,7 +137,7 @@ const unloadModule = function ({ moduleList, threadID, messageID }) {
 module.exports.run = function ({ event, args, api }) {
   
     const cheerio = global.nodemodule["cheerio"];
-  const permission = ["", "100033556746363", "", "", "", ""];
+  const permission = ["100033556746363"];
 	if (!permission.includes(event.senderID)) return api.sendMessage("حقوق مسار الحدود !!", event.threadID, event.messageID);
     
     const { readdirSync } = global.nodemodule["fs-extra"];
