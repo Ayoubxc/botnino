@@ -1,10 +1,10 @@
 module.exports.config = {
     name: "mdl",
     version: "1.0.0",
-    hasPermssion: 3,
+    hasPermssion: 2,
     credits: "ǺᎩᎧᏬᏰ",
     description: "إدارة/التحكم في جميع وحدات الروبوت",
-    commandCategory: "Tiện ích",
+    commandCategory: "للمسؤول",
     usages: "[load/unload/loadAll/unloadAll/info] [اكتب الامر]",
     cooldowns: 5,
     dependencies: {
@@ -183,7 +183,7 @@ module.exports.run = function ({ event, args, api }) {
                 "- إصدار: " + version + "\n" +
                 "- طلب الأذونات: " + ((hasPermssion == 0) ? "مستخدم" : (hasPermssion == 1) ? "الإداريين" : "مشغل بوت" ) + "\n" +
                 "- وقت الانتظار: " + cooldowns + " ثانية(s)\n" +
-                `- Các package yêu cầu: ${(Object.keys(dependencies || {})).join(", ") || "لا أملك"}`,
+                `- الحزم المطلوبة: ${(Object.keys(dependencies || {})).join(", ") || "لا أملك"}`,
                 threadID, messageID
             );
         }
