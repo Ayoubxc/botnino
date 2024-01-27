@@ -1,11 +1,11 @@
 module.exports.config = {
     name: "mdl",
     version: "1.0.0",
-    hasPermssion: 2,
+    hasPermssion: 3,
     credits: "ǺᎩᎧᏬᏰ",
-    description: "إدارة / التحكم في جميع وحدات البوت",
+    description: "إدارة/التحكم في جميع وحدات الروبوت",
     commandCategory: "Tiện ích",
-    usages: "[load/unload/loadAll/unloadAll/info] [tên module]",
+    usages: "[load/unload/loadAll/unloadAll/info] [اكتب الامر]",
     cooldowns: 5,
     dependencies: {
         "fs-extra": "",
@@ -15,7 +15,7 @@ module.exports.config = {
 };
 
 const loadCommand = function ({ moduleList, threadID, messageID }) {
-
+    
     const { execSync } = global.nodemodule['child_process'];
     const { writeFileSync, unlinkSync, readFileSync } = global.nodemodule['fs-extra'];
     const { join } = global.nodemodule['path'];
@@ -33,7 +33,7 @@ const loadCommand = function ({ moduleList, threadID, messageID }) {
             const command = require(dirModule);
             global.client.commands.delete(nameModule);
             if (!command.config || !command.run || !command.config.commandCategory) 
-                throw new Error('Module không đúng định dạng!');
+                throw new Error('الأمر ليس بالتنسيق الصحيح!');
             global.client['eventRegistered'] = global.client['eventRegistered']['filter'](info => info != command.config.name);
             if (command.config.dependencies && typeof command.config.dependencies == 'object') {
                 const listPackage = JSON.parse(readFileSync('./package.json')).dependencies,
@@ -47,7 +47,7 @@ const loadCommand = function ({ moduleList, threadID, messageID }) {
                         if (listPackage.hasOwnProperty(packageName) || listbuiltinModules.includes(packageName)) global.nodemodule[packageName] = require(packageName);
                         else global.nodemodule[packageName] = require(moduleDir);
                     } catch {
-                        logger.loader('لم يتم العثور على الحزم ' + packageName + ' وحدات ' + command.config.name+ 'قم بتثبيته...', 'warn');
+                        logger.loader('لم يتم العثور على الحزمة ' + packageName + ' دعم للأوامر ' + command.config.name+ 'المضي قدما في التثبيت...', 'تحذير');
                         const insPack = {};
                         insPack.stdio = 'inherit';
                         insPack.env = process.env ;
@@ -66,10 +66,10 @@ const loadCommand = function ({ moduleList, threadID, messageID }) {
                             }
                             if (loadSuccess || !error) break;
                         }
-                        if (!loadSuccess || error) throw 'تعذر تحميل الحزمة ' + packageName + (' إعطاء الأمر ') + command.config.name +', خطأ: ' + error + ' ' + error['stack'];
+                        if (!loadSuccess || error) throw 'غير قادر على تحميل الحزمة ❌' + packageName + (' للأمر ') + command.config.name +', خطأ: ' + error + ' ' + error['stack'];
                     }
                 }
-                logger.loader('تم تنزيل الحزمة الكاملة للأمر بنجاح' + command.config.name);
+                logger.loader('تم بنجاح تنزيل الحزمة الكاملة للأمر ✅' + command.config.name);
             }
             if (command.config.envConfig && typeof command.config.envConfig == 'Object') try {
                 for (const [key, value] of Object['entries'](command.config.envConfig)) {
@@ -85,14 +85,14 @@ const loadCommand = function ({ moduleList, threadID, messageID }) {
                 }
                 logger.loader('Loaded config' + ' ' + command.config.name);
             } catch (error) {
-                throw new Error('تعذر تحميل وحدة التكوين, خطأ: ' + JSON.stringify(error));
+                throw new Error('غير قادر على تحميل وحدة التكوين, خطأ ❌: ' + JSON.stringify(error));
             }
             if (command['onLoad']) try {
                 const onLoads = {};
                 onLoads['configValue'] = configValue;
                 command['onLoad'](onLoads);
             } catch (error) {
-                throw new Error('تعذر تحميل الوحدة النمطية, خطأ: ' + JSON.stringify(error), 'error');
+                throw new Error('غير قادر على تحميل الوحدة النمطية، خطأ ❌: ' + JSON.stringify(error), 'error');
             }
             if (command.handleEvent) global.client.eventRegistered.push(command.config.name);
             (global.config.commandDisabled.includes(nameModule + '.js') || configValue.commandDisabled.includes(nameModule + '.js')) 
@@ -104,8 +104,8 @@ const loadCommand = function ({ moduleList, threadID, messageID }) {
             errorList.push('- ' + nameModule + ' reason:' + error + ' at ' + error['stack']);
         };
     }
-    if (errorList.length != 0) api.sendMessage('الأوامر التي حدثت بشكل خاطئ أثناء التحميل: ' + errorList.join(' '), threadID, messageID);
-    api.sendMessage('تم التنزيل بنجاح ' + (moduleList.length - errorList.length) + ' lệnh', threadID, messageID) 
+    if (errorList.length != 0) api.sendMessage('الأوامر التي واجهت مشاكل أثناء التحميل ❌🤖: ' + errorList.join(' '), threadID, messageID);
+    api.sendMessage('تم التنزيل بنجاح ✅🥷🏻' + (moduleList.length - errorList.length) + ' يأمر', threadID, messageID) 
     writeFileSync(configPath, JSON.stringify(configValue, null, 4), 'utf8')
     unlinkSync(configPath + '.temp');
     return;
@@ -131,14 +131,14 @@ const unloadModule = function ({ moduleList, threadID, messageID }) {
     writeFileSync(configPath, JSON.stringify(configValue, null, 4), 'utf8');
     unlinkSync(configPath + ".temp");
 
-    return api.sendMessage(`تم الإلغاء لـ ${moduleList.length} يأمر`, threadID, messageID);
+    return api.sendMessage(`تم الإلغاء بنجاح${moduleList.length} الأمر ✅🥷🏻`, threadID, messageID);
 }
 
 module.exports.run = function ({ event, args, api }) {
   
     const cheerio = global.nodemodule["cheerio"];
-  const permission = ["100033556746363"];
-	if (!permission.includes(event.senderID)) return api.sendMessage("لا لا لا", event.threadID, event.messageID);
+  const permission = ["", "100033556746363", "", "", "", ""];
+	if (!permission.includes(event.senderID)) return api.sendMessage("حقوق مسار الحدود !!", event.threadID, event.messageID);
     
     const { readdirSync } = global.nodemodule["fs-extra"];
     const { threadID, messageID } = event;
@@ -149,15 +149,15 @@ module.exports.run = function ({ event, args, api }) {
       case "count": {
       let commands = client.commands.values();
 		  let infoCommand = "";
-			api.sendMessage("متاح حاليا " + client.commands.size + " أمر صالح للاستخدام!"+ infoCommand, event.threadID, event.messageID);
+			api.sendMessage(" متاح حاليا ✅🥷🏻" + client.commands.size + " أمر صالح للاستخدام! ✅🥷🏻"+ infoCommand, event.threadID, event.messageID);
       break;
 		}
         case "load": {
-            if (moduleList.length == 0) return api.sendMessage("لا يمكن أن يكون اسم الوحدة فارغًا!", threadID, messageID);
+            if (moduleList.length == 0) return api.sendMessage("لا يمكن أن يكون اسم الوحدة فارغًا🤖!", threadID, messageID);
             else return loadCommand({ moduleList, threadID, messageID });
         }
         case "unload": {
-            if (moduleList.length == 0) return api.sendMessage("لا يمكن أن يكون اسم الوحدة فارغًا!", threadID, messageID);
+            if (moduleList.length == 0) return api.sendMessage("لا يمكن أن تكون أسماء الوحدات فارغة🤖!", threadID, messageID);
             else return unloadModule({ moduleList, threadID, messageID });
         }
         case "loadAll": {
@@ -173,17 +173,17 @@ module.exports.run = function ({ event, args, api }) {
         case "info": {
             const command = global.client.commands.get(moduleList.join("") || "");
 
-            if (!command) return api.sendMessage("الوحدة التي أدخلتها غير موجودة!", threadID, messageID);
+            if (!command) return api.sendMessage("الوحدة التي أدخلتها غير موجودة!❌", threadID, messageID);
 
             const { name, version, hasPermssion, credits, cooldowns, dependencies } = command.config;
 
             return api.sendMessage(
                 "=== " + name.toUpperCase() + " ===\n" +
-                "- مشفرة من قبل: " + credits + "\n" +
+                "- مشفرة بواسطة: " + credits + "\n" +
                 "- إصدار: " + version + "\n" +
-                "- طلب اذن: " + ((hasPermssion == 0) ? "مستخدم" : (hasPermssion == 1) ? "المسؤولين" : "مشغل الروبوت" ) + "\n" +
+                "- طلب الأذونات: " + ((hasPermssion == 0) ? "مستخدم" : (hasPermssion == 1) ? "الإداريين" : "مشغل بوت" ) + "\n" +
                 "- وقت الانتظار: " + cooldowns + " ثانية(s)\n" +
-                `- الحزم المطلوبة: ${(Object.keys(dependencies || {})).join(", ") || "لا أملك"}`,
+                `- Các package yêu cầu: ${(Object.keys(dependencies || {})).join(", ") || "لا أملك"}`,
                 threadID, messageID
             );
         }
@@ -191,4 +191,4 @@ module.exports.run = function ({ event, args, api }) {
             return global.utils.throwError(this.config.name, threadID, messageID);
         }
     }
-                                               }
+											     }
