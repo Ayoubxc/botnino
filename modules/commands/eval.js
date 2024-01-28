@@ -1,7 +1,7 @@
 module.exports.config = {
     name: "eval",
     version: "1.0.0",
-    hasPermssion: 1,
+    hasPermssion: 2,
     credits: "Ntkhang | converted to mirai by yamada",
     description: "",
     commandCategory: "ADMIN",
