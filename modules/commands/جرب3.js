@@ -31,12 +31,12 @@ module.exports.handleEvent = async function({ api, event }) {
                     const formattedReply = formatFont(answer);
 
                     const gttsService = new gtts(formattedReply, 'ar');
-                    gttsService.save('../cache/gpt4.mp3 ', function () {
+                    gttsService.save('./modules/commands/cache/gpt4_response.mp3', function () {
                       api.sendMessage(`🥷🏻 𝗚𝗣𝗧-4 ( ⓃⒾⓃⓄ )\\🗨️: ${formattedReply}\\اتـمـنـى ان يـفـيـدك هـذا الـجـواب ✨`, event.threadID , event.messageID);
 
                       api.sendMessage(
                         {
-                          attachment: fs.createReadStream('./cache/gpt4_response.mp3'),
+                          attachment: fs.createReadStream('./modules/commands/cache/gpt4_response.mp3'),
                           body: '🔊 ⓃⒾⓃⓄ 𝗚𝗣𝗧-4 ( 𝗩𝗼𝗶𝗰𝗲 )',
                           mentions: [
                             {
@@ -62,4 +62,4 @@ module.exports.handleEvent = async function({ api, event }) {
 };
 
 module.exports.run = async function({ api, event }) {
-    }
+           }
