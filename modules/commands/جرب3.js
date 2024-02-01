@@ -41,7 +41,7 @@ module.exports.handleEvent = async function({ api, event }) {
 
     if (event.senderID !== api.getCurrentUserID() && body.endsWith("؟")) {
         const question = body.slice(0, -1);
-        const apiUrl = `https://gpt-4-ayoubxnino.replit.app/hercai/api?content=${encodeURIComponent(question)}`;
+        const apiUrl = `https://code-merge-api-hazeyy01.replit.app/hercai/api?content=${encodeURIComponent(question)}`;
 
         try {
             const response = await axios.get(apiUrl);
